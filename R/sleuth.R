@@ -320,7 +320,8 @@ sleuth_prep <- function(
 
         tmp <- ret$obs_raw
         tmp <- dplyr::group_by(tmp, target_id)
-        tmp <- dplyr::summarize(tmp, pass_filter = basic_filter(est_counts, ...))
+        mp <- if(length(list(...)) && list(...)$min_prop) list(...)$min_prop else 0.47
+        tmp <- dplyr::summarize(tmp, pass_filter = basic_filter(est_counts, min_prop = mp))
 
         tmp <- data.table::data.table(tmp)
         target_mapping <- data.table::data.table(target_mapping)
