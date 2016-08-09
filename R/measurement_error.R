@@ -108,7 +108,7 @@ sleuth_fit <- function(obj, formula = NULL, fit_name = NULL, ...) {
     -shrink)
 
   l_smooth <- dplyr::mutate(l_smooth,
-    smooth_sigma_sq_pmax = pmax(smooth_sigma_sq, sigma_sq))
+    smooth_sigma_sq_pmax = pmax(smooth_sigma_sq, sigma_sq, na.rm=TRUE))
 
   msg('computing variance of betas')
   beta_covars <- lapply(1:nrow(l_smooth),
