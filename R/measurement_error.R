@@ -454,7 +454,7 @@ gene_summary <- function(obj, which_column, transform = identity, norm_by_length
   obs_counts <- obs_to_matrix(obj_mod, "scaled_reads_per_base")
   obs_counts <- transform(obs_counts)
 
-  obj_mod$kal <- parallel::mclapply(seq_along(obj_mod$kal),
+  obj_mod$kal <- lapply(seq_along(obj_mod$kal),
     function(i) {
       k <- obj_mod$kal[[i]]
       current_sample <- obj_mod$sample_to_covariates$sample[i]
